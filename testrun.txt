@@ -1,0 +1,285 @@
+ian@ian-Latitude-E7440:~$ nano fiboz.f
+ian@ian-Latitude-E7440:~$ gfortran fiboz.f -o fiboz
+ian@ian-Latitude-E7440:~$ ./fiboz
+ Fibonacci series less than 100:
+           0
+           1
+           1
+           2
+           3
+           5
+           8
+          13
+          21
+          34
+          55
+          89
+ian@ian-Latitude-E7440:~$ cat fiboz.f
+      PROGRAM FIBONACCI
+C     This program generates the Fibonacci series less than 100.
+      INTEGER F1, F2, NEXT
+      F1 = 0
+      F2 = 1
+      PRINT *, 'Fibonacci series less than 100:'
+      PRINT *, F1
+      PRINT *, F2
+      NEXT = F1 + F2
+      DO WHILE (NEXT < 100)
+         PRINT *, NEXT
+         F1 = F2
+         F2 = NEXT
+         NEXT = F1 + F2
+      END DO
+      END
+ian@ian-Latitude-E7440:~$ sloccount fiboz.f
+Have a non-directory at the top, so creating directory top_dir
+Adding /home/ian/fiboz.f to top_dir
+Categorizing files.
+Finding a working MD5 command....
+Found a working MD5 command.
+Computing results.
+
+
+SLOC	Directory	SLOC-by-Language (Sorted)
+15      top_dir         fortran=15
+
+
+Totals grouped by language (dominant language first):
+fortran:         15 (100.00%)
+
+
+
+
+Total Physical Source Lines of Code (SLOC)                = 15
+Development Effort Estimate, Person-Years (Person-Months) = 0.00 (0.03)
+ (Basic COCOMO model, Person-Months = 2.4 * (KSLOC**1.05))
+Schedule Estimate, Years (Months)                         = 0.05 (0.65)
+ (Basic COCOMO model, Months = 2.5 * (person-months**0.38))
+Estimated Average Number of Developers (Effort/Schedule)  = 0.04
+Total Estimated Cost to Develop                           = $ 329
+ (average salary = $56,286/year, overhead = 2.40).
+SLOCCount, Copyright (C) 2001-2004 David A. Wheeler
+SLOCCount is Open Source Software/Free Software, licensed under the GNU GPL.
+SLOCCount comes with ABSOLUTELY NO WARRANTY, and you are welcome to
+redistribute it under certain conditions as specified by the GNU GPL license;
+see the documentation for details.
+Please credit this data as "generated using David A. Wheeler's 'SLOCCount'."
+ian@ian-Latitude-E7440:~$ gfortran fiboz.f -S
+ian@ian-Latitude-E7440:~$ gfortran fiboz.s -o fibozs
+ian@ian-Latitude-E7440:~$ ./fibozs
+ Fibonacci series less than 100:
+           0
+           1
+           1
+           2
+           3
+           5
+           8
+          13
+          21
+          34
+          55
+          89
+ian@ian-Latitude-E7440:~$ cat fiboz.s
+	.file	"fiboz.f"
+	.text
+	.section	.rodata
+.LC0:
+	.string	"fiboz.f"
+	.align 8
+.LC1:
+	.ascii	"Fibonacci series less than 100:"
+	.text
+	.type	MAIN__, @function
+MAIN__:
+.LFB0:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$544, %rsp
+	movl	$0, -4(%rbp)
+	movl	$1, -8(%rbp)
+	leaq	.LC0(%rip), %rax
+	movq	%rax, -536(%rbp)
+	movl	$6, -528(%rbp)
+	movl	$128, -544(%rbp)
+	movl	$6, -540(%rbp)
+	leaq	-544(%rbp), %rax
+	movq	%rax, %rdi
+	call	_gfortran_st_write@PLT
+	leaq	-544(%rbp), %rax
+	movl	$31, %edx
+	leaq	.LC1(%rip), %rcx
+	movq	%rcx, %rsi
+	movq	%rax, %rdi
+	call	_gfortran_transfer_character_write@PLT
+	leaq	-544(%rbp), %rax
+	movq	%rax, %rdi
+	call	_gfortran_st_write_done@PLT
+	leaq	.LC0(%rip), %rax
+	movq	%rax, -536(%rbp)
+	movl	$7, -528(%rbp)
+	movl	$128, -544(%rbp)
+	movl	$6, -540(%rbp)
+	leaq	-544(%rbp), %rax
+	movq	%rax, %rdi
+	call	_gfortran_st_write@PLT
+	leaq	-4(%rbp), %rcx
+	leaq	-544(%rbp), %rax
+	movl	$4, %edx
+	movq	%rcx, %rsi
+	movq	%rax, %rdi
+	call	_gfortran_transfer_integer_write@PLT
+	leaq	-544(%rbp), %rax
+	movq	%rax, %rdi
+	call	_gfortran_st_write_done@PLT
+	leaq	.LC0(%rip), %rax
+	movq	%rax, -536(%rbp)
+	movl	$8, -528(%rbp)
+	movl	$128, -544(%rbp)
+	movl	$6, -540(%rbp)
+	leaq	-544(%rbp), %rax
+	movq	%rax, %rdi
+	call	_gfortran_st_write@PLT
+	leaq	-8(%rbp), %rcx
+	leaq	-544(%rbp), %rax
+	movl	$4, %edx
+	movq	%rcx, %rsi
+	movq	%rax, %rdi
+	call	_gfortran_transfer_integer_write@PLT
+	leaq	-544(%rbp), %rax
+	movq	%rax, %rdi
+	call	_gfortran_st_write_done@PLT
+	movl	-4(%rbp), %edx
+	movl	-8(%rbp), %eax
+	addl	%edx, %eax
+	movl	%eax, -12(%rbp)
+.L4:
+	movl	-12(%rbp), %eax
+	cmpl	$99, %eax
+	jg	.L6
+	leaq	.LC0(%rip), %rax
+	movq	%rax, -536(%rbp)
+	movl	$11, -528(%rbp)
+	movl	$128, -544(%rbp)
+	movl	$6, -540(%rbp)
+	leaq	-544(%rbp), %rax
+	movq	%rax, %rdi
+	call	_gfortran_st_write@PLT
+	leaq	-12(%rbp), %rcx
+	leaq	-544(%rbp), %rax
+	movl	$4, %edx
+	movq	%rcx, %rsi
+	movq	%rax, %rdi
+	call	_gfortran_transfer_integer_write@PLT
+	leaq	-544(%rbp), %rax
+	movq	%rax, %rdi
+	call	_gfortran_st_write_done@PLT
+	movl	-8(%rbp), %eax
+	movl	%eax, -4(%rbp)
+	movl	-12(%rbp), %eax
+	movl	%eax, -8(%rbp)
+	movl	-4(%rbp), %edx
+	movl	-8(%rbp), %eax
+	addl	%edx, %eax
+	movl	%eax, -12(%rbp)
+	jmp	.L4
+.L6:
+	nop
+	nop
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE0:
+	.size	MAIN__, .-MAIN__
+	.globl	main
+	.type	main, @function
+main:
+.LFB1:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movl	%edi, -4(%rbp)
+	movq	%rsi, -16(%rbp)
+	movq	-16(%rbp), %rdx
+	movl	-4(%rbp), %eax
+	movq	%rdx, %rsi
+	movl	%eax, %edi
+	call	_gfortran_set_args@PLT
+	leaq	options.4.0(%rip), %rax
+	movq	%rax, %rsi
+	movl	$7, %edi
+	call	_gfortran_set_options@PLT
+	call	MAIN__
+	movl	$0, %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE1:
+	.size	main, .-main
+	.section	.rodata
+	.align 16
+	.type	options.4.0, @object
+	.size	options.4.0, 28
+options.4.0:
+	.long	2116
+	.long	4095
+	.long	0
+	.long	1
+	.long	1
+	.long	0
+	.long	31
+	.ident	"GCC: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0"
+	.section	.note.GNU-stack,"",@progbits
+ian@ian-Latitude-E7440:~$ sloccount fibosz.s
+WARNING!!! Not a file nor a directory (so ignored): fibosz.s
+Categorizing files.
+Skipping non-directory *
+Computing results.
+
+
+SLOC	Directory	SLOC-by-Language (Sorted)
+SLOC total is zero, no further analysis performed.
+ian@ian-Latitude-E7440:~$ sloccount  fiboz.s
+Have a non-directory at the top, so creating directory top_dir
+Adding /home/ian/fiboz.s to top_dir
+Categorizing files.
+Finding a working MD5 command....
+Found a working MD5 command.
+Computing results.
+
+
+SLOC	Directory	SLOC-by-Language (Sorted)
+159     top_dir         asm=159
+
+
+Totals grouped by language (dominant language first):
+asm:            159 (100.00%)
+
+
+
+
+Total Physical Source Lines of Code (SLOC)                = 159
+Development Effort Estimate, Person-Years (Person-Months) = 0.03 (0.35)
+ (Basic COCOMO model, Person-Months = 2.4 * (KSLOC**1.05))
+Schedule Estimate, Years (Months)                         = 0.14 (1.67)
+ (Basic COCOMO model, Months = 2.5 * (person-months**0.38))
+Estimated Average Number of Developers (Effort/Schedule)  = 0.21
+Total Estimated Cost to Develop                           = $ 3,918
+ (average salary = $56,286/year, overhead = 2.40).
+SLOCCount, Copyright (C) 2001-2004 David A. Wheeler
+SLOCCount is Open Source Software/Free Software, licensed under the GNU GPL.
+SLOCCount comes with ABSOLUTELY NO WARRANTY, and you are welcome to
+redistribute it under certain conditions as specified by the GNU GPL license;
+see the documentation for details.
+Please credit this data as "generated using David A. Wheeler's 'SLOCCount'."
+ian@ian-Latitude-E7440:~$ 
